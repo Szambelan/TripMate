@@ -1,13 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StartViewComponent } from './start-view/start-view.component';
-import { LoginViewComponent } from './login-view/login-view.component';
-import { RegisterViewComponent } from './register-view/register-view.component';
+import { StartViewComponent } from './user/start-view/start-view.component';
+import { LoginViewComponent } from './user/login-view/login-view.component';
+import { RegisterViewComponent } from './user/register-view/register-view.component';
+import { UserComponent } from './user/user.component';
+import { HomeComponent } from './home/home.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: StartViewComponent },
-  { path: 'login', component: LoginViewComponent },
-  { path: 'register', component: RegisterViewComponent }
+  {
+    path: '', component: UserComponent,
+    children: [{ path: '', component: StartViewComponent }]
+  },
+  {
+    path: 'login', component: UserComponent,
+    children: [{ path: '', component: LoginViewComponent }]
+  },
+  {
+    path: 'register', component: UserComponent,
+    children: [{ path: '', component: RegisterViewComponent }]
+  },
+  {
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
+
+  }
 ];
 
 @NgModule({
@@ -16,4 +32,4 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [StartViewComponent, LoginViewComponent, RegisterViewComponent]
+export const routingComponents = [UserComponent, StartViewComponent, LoginViewComponent, RegisterViewComponent, HomeComponent]

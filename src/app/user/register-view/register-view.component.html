@@ -1,0 +1,47 @@
+<div id="register" style="margin-top: 120px;">
+    <div class="container">
+
+        <form id="login-form" class="form" #registerForm="ngForm" (ngSubmit)="OnSubmit(registerForm)">
+            <h2 class="text-center mb-5 text-dark">Rejestracja</h2><br>
+
+            <div *ngIf="isRegisterError" id="login-row" class="row justify-content-center align-items-center">
+                <div class="alert alert-warning">
+                    Użytkownik już istnieje.
+                </div>
+            </div>
+
+            <div id="login-row" class="row justify-content-center align-items-top">
+                <div id="login-column" class="col-md-4 mr-4">
+                    <h4 class="text-left text-active">Dane konta:</h4><br>
+                    <div class="form-group">
+                        <label for="name" class="text-primary">Imię*:</label>
+                        <input type="name" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="user.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="surname" class="text-primary">Nazwisko*:</label>
+                        <input type="surname" name="surname" id="surname" class="form-control" #surname="ngModel" [(ngModel)]="user.surname">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="text-primary">Email*:</label>
+                        <input type="email" name="email" id="email" class="form-control validate" #email="ngModel" [(ngModel)]="user.email" required [pattern]="emailPattern">
+                        <label *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-warning mt-3 p-2" data-error="">Niepoprawny email.</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="text-primary">Hasło*:</label>
+                        <input type="password" name="password" id="password" class="form-control validate" #password="ngModel" [(ngModel)]="user.password" required [pattern]="passwordPattern">
+                        <label *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-warning mt-3 p-2" data-error="">Hasło musi zawierać minimum 5-20 znaków, dużą i małą literę oraz cyfrę.</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="repassword" class="text-primary">Powtórz hasło*:</label>
+                        <input type="password" name="repassword" id="repassword" class="form-control validate" #repassword="ngModel" [(ngModel)]="user.repassword" required>
+                        <label *ngIf="password.value !== repassword.value && (repassword.dirty || repassword.touched)"  class="alert alert-warning mt-3 p-2" data-error="">Hasła muszą do siebie pasować.</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-16 my-4 text-center ">
+                <button [disabled]="!registerForm.valid" type="submit" class="btn btn-outline-primary">Zarejestruj się</button>
+            </div>
+        </form>
+    </div>
+</div>
