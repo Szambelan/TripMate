@@ -11,6 +11,7 @@ import {AuthGuard} from './auth/auth.guard';
 // wtf ??? czemu tutaj
 import { UserComponent } from './user/user.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
