@@ -20,9 +20,9 @@ export class LoginViewComponent implements OnInit {
 
     OnSubmit(email, password) {
         this.userService.userAuthentication(email, password).subscribe((data: any) => {
-                console.log(JSON.stringify(data)); // wyświetlenie tokenu i tyle
-                localStorage.setItem('userToken', data);
-                this.router.navigate(['/home']);
+                console.log(data); // wyświetlenie tokenu i tyle
+                localStorage.setItem('userToken', data.token);
+                this.router.navigate(['/home/trip']);
             },
             (err: HttpErrorResponse) => {
                 this.isLoginError = true;

@@ -5,7 +5,7 @@ import {User} from '../models/user.model';
 
 @Injectable()
 export class UserService {
-    readonly apiURL: string = 'http://localhost:3000';
+    readonly apiURL: string = 'http://localhost:5000';
 
     constructor(private http: HttpClient) {
     }
@@ -19,13 +19,13 @@ export class UserService {
             password: user.password,
         }
         const reqHeader = new HttpHeaders({'Content-Type': 'application/json'});
-        return this.http.post(this.apiURL + '/api/users', userBody, {headers: reqHeader});
+        return this.http.post(this.apiURL + '/users/signup', userBody, {headers: reqHeader});
     }
 
     userAuthentication(email: string, password: string) {
         const data = JSON.stringify({email, password});
         const reqHeader = new HttpHeaders({'Content-Type': 'application/json'});
-        return this.http.post(this.apiURL + '/api/auth', data, {headers: reqHeader});
+        return this.http.post(this.apiURL + '/users/signin', data, {headers: reqHeader});
     }
 
  }
