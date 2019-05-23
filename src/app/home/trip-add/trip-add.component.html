@@ -1,55 +1,110 @@
 <div id="register" style="margin-top: 120px;">
-  <div class="container">
-    <form id="trip-form" class="form" #tripForm="ngForm" (ngSubmit)="OnSubmit(tripForm)">
+    <div class="container">
+        <form id="trip-form" class="form" #tripForm="ngForm" (ngSubmit)="OnSubmit(tripForm)">
 
-      <div *ngIf="isTripError" id="trip-row" class="row justify-content-center align-items-center">
-        <div class="alert alert-warning">
-          Przejazd już istnieje lub wprowadzono złe, bądź niekompletne dane
-        </div>
-      </div>
+            <div *ngIf="isTripError" id="trip-row" class="row justify-content-center align-items-center">
+                <div class="alert alert-warning">
+                    Przejazd już istnieje
+                </div>
+            </div>
 
-      <div id="trip-row" class="row justify-content-center align-items-top">
-        <div id="trip-column" class="col-md-4 mr-4">
-          <h4 class="text-left text-active">Szczegóły przejazdu:</h4><br>
-          <div class="form-group">
-            <label for="cityFrom" class="text-primary">Jadę z</label>
-            <input type="text" name="cityFrom" id="cityFrom" class="form-control" #cityFrom="ngModel" [(ngModel)]="newTrip.cityFrom">
-          </div>
-          <div class="form-group">
-            <label for="cityTo" class="text-primary">Jadę do:</label>
-            <input type="text" name="cityTo" id="cityTo" class="form-control" #cityTo="ngModel" [(ngModel)]="newTrip.cityTo">
-          </div>
-          <div class="form-group">
-            <label for="seatsLeft" class="text-primary">Ilość miejsc:</label>
-            <select class="form-control validate" id="seatsLeft" name="seatsLeft" #seatsLeft="ngModel" [(ngModel)]="newTrip.seatsLeft">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="departureDate" class="text-primary">Data wyjazdu:</label>
-            <input type="text" name="departureDate" id="departureDate" class="form-control validate" #departureDate="ngModel" [(ngModel)]="newTrip.departureDate" placeholder="YYYY-MM-DD">
-          </div>
-          <div class="form-group">
-            <label for="arrivalDate" class="text-primary">Data przyjazdu:</label>
-            <input type="text" name="arrivalDate" id="arrivalDate" class="form-control validate" #arrivalDate="ngModel" [(ngModel)]="newTrip.arrivalDate" placeholder="YYYY-MM-DD">
-          </div>
-        </div>
-        <div id="trip-column" class="col-md-8 mr-8">
-          <div class="form-group">
-            <label for="description" class="text-primary">Opis:</label>
-            <textarea rows="3" type="text" name="description" id="description" class="form-control validate" #description="ngModel" [(ngModel)]="newTrip.description"></textarea>
-          </div>
-        </div>
+            <div *ngIf="isDateError" id="trip-row" class="row justify-content-center align-items-center">
+                <div class="alert alert-warning">
+                    Niezgodność dat
+                </div>
+            </div>
 
-      </div>
-      <div class="col-md-16 my-4 text-center ">
-        <button [disabled]="!tripForm.valid" type="submit" class="btn btn-outline-primary">Dodaj przejazd</button>
-      </div>
-    </form>
-  </div>
+            <div id="trip-row" class="row justify-content-center align-items-top">
+                <div id="trip-column" class="col-md-4 mr-4">
+                    <h4 class="text-center text-active">Szczegóły przejazdu:</h4><br>
+                    <div class="form-group">
+                        <label for="cityFrom" class="text-primary">Jadę z:</label>
+                        <input type="text" name="cityFrom" id="cityFrom" class="form-control" #cityFrom="ngModel"
+                               [(ngModel)]="newTrip.cityFrom">
+                    </div>
+                    <div class="form-group">
+                        <label for="cityTo" class="text-primary">Jadę do:</label>
+                        <input type="text" name="cityTo" id="cityTo" class="form-control" #cityTo="ngModel"
+                               [(ngModel)]="newTrip.cityTo">
+                    </div>
+                    <div class="form-group">
+                        <label for="seatsLeft" class="text-primary">Ilość miejsc:</label>
+                        <select class="form-control validate" id="seatsLeft" name="seatsLeft" #seatsLeft="ngModel"
+                                [(ngModel)]="newTrip.seatsLeft">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="text-primary">Data wyjazdu:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control validate" placeholder="YYYY-MM-DD"
+                                   name="departureDate" [(ngModel)]="newTrip.departureDate" ngbDatepicker
+                                   [footerTemplate]="footerTemplate"
+                                   #departureDate="ngbDatepicker" departureDate.>
+
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary fa fa-calendar"
+                                        (click)="departureDate.toggle()"
+                                        type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #footerTemplate>
+                        <hr class="my-0">
+                        <button class="btn btn-primary btn-sm m-2 float-left"
+                                (click)="newTrip.departureDate = today; departureDate.close()">
+                            Today
+                        </button>
+                        <button class="btn btn-secondary btn-sm m-2 float-right" (click)="departureDate.close()">Close
+                        </button>
+                    </ng-template>
+
+
+                    <div class="form-group">
+                        <label class="text-primary">Data przyjazdu:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control validate" placeholder="YYYY-MM-DD"
+                                   name="arrivalDate" [(ngModel)]="newTrip.arrivalDate" ngbDatepicker
+                                   [footerTemplate]="footerTemplate1"
+                                   #arrivalDate="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary fa fa-calendar" (click)="arrivalDate.toggle()"
+                                        type="button"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #footerTemplate1>
+                        <hr class="my-0">
+                        <button class="btn btn-primary btn-sm m-2 float-left"
+                                (click)="newTrip.arrivalDate = today1; arrivalDate.close()">
+                            Today
+                        </button>
+                        <button class="btn btn-secondary btn-sm m-2 float-right" (click)="arrivalDate.close()">Close
+                        </button>
+                    </ng-template>
+
+
+                </div>
+                <div id="trip-column" class="col-md-8 mr-8">
+                    <div class="form-group">
+                        <label for="description" class="text-primary">Opis:</label>
+                        <textarea rows="3" type="text" name="description" id="description" class="form-control validate"
+                                  #description="ngModel" [(ngModel)]="newTrip.description"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-16 my-4 text-center ">
+                <button [disabled]="!tripForm.valid" type="submit" class="btn btn-outline-primary">Dodaj przejazd
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

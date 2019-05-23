@@ -14,7 +14,7 @@
 
             <div id="login-row" class="row justify-content-center align-items-top">
                 <div id="login-column" class="col-md-4 mr-4">
-                    <h4 class="text-left text-active">Dane konta:</h4><br>
+                    <h4 class="text-center text-active">Dane konta:</h4><br>
                     <div class="form-group">
                         <label for="name" class="text-primary">Imię*:</label>
                         <input type="name" name="name" id="name" class="form-control" #name="ngModel" [(ngModel)]="user.name">
@@ -22,6 +22,11 @@
                     <div class="form-group">
                         <label for="surname" class="text-primary">Nazwisko*:</label>
                         <input type="surname" name="surname" id="surname" class="form-control" #surname="ngModel" [(ngModel)]="user.surname">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="text-primary">Telefon*:</label>
+                        <input type="text" name="phone" id="phone" class="form-control validate" #phone="ngModel" [(ngModel)]="user.phone" required [pattern]="phonePattern">
+                        <label *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-warning mt-3 p-2" data-error="">Niepoprawny numer telefonu.</label>
                     </div>
                     <div class="form-group">
                         <label for="email" class="text-primary">Email*:</label>

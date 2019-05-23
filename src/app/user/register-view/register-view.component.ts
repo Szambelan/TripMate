@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.model';
-import { UserService } from '../../shared/user.service';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
+import {UserService} from '../../shared/user.service';
+import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-register-view',
@@ -15,34 +15,47 @@ export class RegisterViewComponent implements OnInit {
     user: User;
     emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,20}$/;
-  
-    isRegisterError: boolean = false;
-  
-    constructor(private userService: UserService, private router: Router) { }
+    phonePattern = /^[0-9]{9}$/;
+
+    isRegisterError = false;
+
+    constructor(private userService: UserService, private router: Router) {
+    }
 
     ngOnInit() {
-      this.resetForm();
+        this.resetForm();
     }
-  
+
     resetForm(form?: NgForm) {
-      if (form != null)
-        form.reset();
-      this.user = {
-          name: '',
-          surname: '',
-        email:	'',
-        password:	''
-      }
+        if (form != null) {
+            form.reset();
+        }
+        this.user = {
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            phone: ''
+        };
     }
 
     OnSubmit(form: NgForm) {
-        console.log(form.value);
-      this.userService.registerUser(form.value).subscribe((data: any) => {
-          this.router.navigate(['/login']);
-      },
-      (err: HttpErrorResponse) => {
-          this.isRegisterError = true;
-      });
+
+        // const newUser = {
+        //     name: form.value.name,
+        //     surname: form.value.surname,
+        //     email: form.value.email,
+        //     password: form.value.password,
+        //     phone: form.value.phone
+        // };
+        //
+        // console.log(newUser);
+        this.userService.registerUser(form.value).subscribe((data: any) => {
+                this.router.navigate(['/login']);
+            },
+            (err: HttpErrorResponse) => {
+                this.isRegisterError = true;
+            });
     }
 
 }

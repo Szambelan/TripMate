@@ -19,7 +19,8 @@ export class HomeService {
         const userBody: homeData = {
             email: user.email,
             name: user.name,
-            surname: user.surname
+            surname: user.surname,
+            phone: user.phone
         };
         let header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
         return this.http.patch(this.apiURL + '/users/edit-profile', userBody, {headers: header});

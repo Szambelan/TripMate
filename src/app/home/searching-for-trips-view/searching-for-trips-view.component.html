@@ -1,0 +1,66 @@
+<div class="container" style="margin-top: 180px; position: relative; ">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="panel-heading text-center panel-relative">
+            <h3 class="panel-title" style="color: #0c0a10">Znajdź przejazd</h3>
+
+            <form class="form align-items-center" style="margin-top: 40px" #searchTripForm="ngForm"
+                  (ngSubmit)="OnSubmit(searchTripForm)">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 justify-content-center">
+                        <input type="text" name="searchFrom" id="searchFrom" class="form-control" #searchFrom="ngModel"
+                               [(ngModel)]="searchInputFrom" placeholder="Miejsce wyjazdu..." style="border-radius: 0.8rem">
+                        <input type="text" name="searchTo" id="searchTo" class="form-control" #searchTo="ngModel"
+                               [(ngModel)]="searchInputTo" placeholder="Miejsce przyjazdu..." style="border-radius: 0.8rem; margin-top: 10px">
+                        <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px">Szukaj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row justify-content-center">
+            <div *ngFor="let trip of searchedTrips" class="col-md-7" data-aos="zoom-in" data-aos-duration="1400" style="margin-top:30px">
+                <div class=" card text-dark bg-white">
+                    <div class="card-header text-dark" style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">
+                        <h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left" src="../../../assets/img/arrow.svg" alt="Arrow"> {{trip.cityTo}}</h4>
+
+                        <button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"
+                                type="button" class="btn btn-outline-primary"
+                                style="position: absolute; right: 5%; top: 30%">Zarezerwuj
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p>Data wyjazdu: {{trip.departureDate}}</p>
+                        <p>Data przyjazdu: {{trip.arrivalDate}}</p>
+                        <p>Wolnych miejsc: {{trip.seatsLeft}}</p>
+                        <p>Opis: {{trip.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--------------------------WSZYSTKIE PRZEJAZDY------------------------------------>
+        <!--<div class="row justify-content-center">-->
+            <!--<div *ngFor="let trip of alltrips" class="col-md-7" style="margin-top:30px">-->
+                <!--<div class=" card text-dark bg-white">-->
+                    <!--<div class="card-header text-dark" style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">-->
+                        <!--<h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left" src="../../../assets/img/arrow.svg" alt="Arrow"> {{trip.cityTo}}</h4>-->
+
+                        <!--<button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"-->
+                                <!--type="button" class="btn btn-outline-primary"-->
+                                <!--style="position: absolute; right: 5%; top: 30%">Zarezerwuj-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="card-body">-->
+                        <!--<p>Data wyjazdu: {{trip.departureDate}}</p>-->
+                        <!--<p>Data przyjazdu: {{trip.arrivalDate}}</p>-->
+                        <!--<p>Wolnych miejsc: {{trip.seatsLeft}}</p>-->
+                        <!--<p>Opis: {{trip.description}}</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div id="register" style="margin-top: 120px;">
+  <div class="container">
+    <form id="trip-form" class="form" #editingForm="ngForm" (ngSubmit)="OnSubmit(editingForm)">
+
+      <div *ngIf="isTripError" id="trip-row" class="row justify-content-center align-items-center">
+        <div class="alert alert-warning">
+          Coś poszło nie tak
+        </div>
+      </div>
+
+      <div id="trip-row" class="row justify-content-center align-items-top">
+        <div id="trip-column" class="col-md-4 mr-4">
+          <h4 class="text-left text-active">Edycja przejazdu:</h4><br>
+          <div class="form-group">
+            <label for="cityFrom" class="text-primary">Jadę z</label>
+            <input type="text" name="cityFrom" id="cityFrom" class="form-control validate" #cityFrom="ngModel" [(ngModel)]="Trip.cityFrom">
+          </div>
+          <div class="form-group">
+            <label for="cityTo" class="text-primary">Jadę do:</label>
+            <input type="text" name="cityTo" id="cityTo" class="form-control validate" #cityTo="ngModel" [(ngModel)]="Trip.cityTo">
+          </div>
+          <div class="form-group">
+            <label for="seatsLeft" class="text-primary">Ilość miejsc:</label>
+            <select class="form-control validate" id="seatsLeft" name="seatsLeft" #seatsLeft="ngModel" [(ngModel)]="Trip.seatsLeft">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="departureDate" class="text-primary">Data wyjazdu:</label>
+            <input type="text" name="departureDate" id="departureDate" class="form-control validate" #departureDate="ngModel" [(ngModel)]="Trip.departureDate" placeholder="YYYY-MM-DD">
+          </div>
+          <div class="form-group">
+            <label for="arrivalDate" class="text-primary">Data przyjazdu:</label>
+            <input type="text" name="arrivalDate" id="arrivalDate" class="form-control validate" #arrivalDate="ngModel" [(ngModel)]="Trip.arrivalDate" placeholder="YYYY-MM-DD">
+          </div>
+        </div>
+        <div id="trip-column" class="col-md-8 mr-8">
+          <div class="form-group">
+            <label for="description" class="text-primary">Opis:</label>
+            <textarea rows="3" type="text" name="description" id="description" class="form-control validate" #description="ngModel" [(ngModel)]="Trip.description"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-16 my-4 text-center ">
+        <button [disabled]="!editingForm.valid" type="submit" class="btn btn-outline-primary">Edytuj przejazd</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,46 +1,51 @@
 <div class="container" style="margin-top: 100px">
-  <div class="row" style="justify-content: center;">
+    <div class="row" style="justify-content: center;">
 
 
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-      <form id="edit-form" class="form" #editingForm="ngForm" (ngSubmit)="OnSubmit(editingForm)">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title" style="width: 75%;">
-              <input type="email" name="email" id="email" class="form-control validate" #email="ngModel"
-                     [(ngModel)]="user.email" required>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <div class="row justify-content-center align-items-center">
-              <div class="col-md-9 col-lg-9  mt-4">
-                <table class="table table-user-information">
-                  <tbody>
-                  <tr>
-                    <td>Imię:</td>
-                    <td><input type="text" name="name" id="name" class="form-control validate"
-                               #name="ngModel" [(ngModel)]="user.name" required></td>
-                  </tr>
-                  <tr>
-                    <td>Nazwisko:</td>
-                    <td><input type="text" name="surname" id="surname" class="form-control validate"
-                               #surname="ngModel" [(ngModel)]="user.surname" required></td>
-                  </tr>
-                  </tbody>
-                </table>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+            <form id="edit-form" class="form" #editingForm="ngForm" (ngSubmit)="OnSubmit(editingForm)">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <input type="email" name="email" id="email" class="text-center form-control validate" #email="ngModel"
+                                   [(ngModel)]="user.email" required>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-9 col-lg-9  mt-4">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>Imię:</td>
+                                        <td><input type="text" name="name" id="name" class="form-control validate"
+                                                   #name="ngModel" [(ngModel)]="user.name" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nazwisko:</td>
+                                        <td><input type="text" name="surname" id="surname" class="form-control validate"
+                                                   #surname="ngModel" [(ngModel)]="user.surname" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telefon:</td>
+                                        <td><input type="text" name="phone" id="phone" class="form-control validate"
+                                                   #phone="ngModel" [(ngModel)]="user.phone" required></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
 
-                <button [disabled]="!editingForm.valid" type="submit" class="btn btn-outline-primary">
-                  Zatwierdź
-                </button>
+                                <button [disabled]="!editingForm.valid" type="submit" class="btn btn-outline-primary">
+                                    Zatwierdź
+                                </button>
 
-                <a href="/home/profile" class="btn btn-primary" style="float: right;">Wróć</a>
-              </div>
-            </div>
-          </div>
+                                <a href="/home/profile" class="btn btn-primary" style="float: right;">Wróć</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>
 
 

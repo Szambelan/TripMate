@@ -9,6 +9,8 @@ import { ProfileViewComponent } from './home/profile-view/profile-view.component
 import {TripViewComponent} from './home/trip-view/trip-view.component';
 import {ProfileViewEditComponent} from './home/profile-view-edit/profile-view-edit.component';
 import {TripAddComponent} from './home/trip-add/trip-add.component';
+import {SearchingForTripsViewComponent} from './home/searching-for-trips-view/searching-for-trips-view.component';
+import {TripViewEditComponent} from './home/trip-view-edit/trip-view-edit.component';
 import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
@@ -31,16 +33,19 @@ const routes: Routes = [
       { path: 'trip', component: TripViewComponent },
       { path: 'profileEdit', component: ProfileViewEditComponent },
       { path: 'tripAdd', component: TripAddComponent },
-      ]
+      { path: 'searchForTrips', component: SearchingForTripsViewComponent},
+      { path: 'tripEdit', component: TripViewEditComponent},
+      ],
 
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 
 export class AppRoutingModule { }
 export const routingComponents = [UserComponent, StartViewComponent, LoginViewComponent,
-  RegisterViewComponent, HomeComponent, ProfileViewComponent, TripViewComponent, ProfileViewEditComponent, TripAddComponent];
+  RegisterViewComponent, HomeComponent, ProfileViewComponent, TripViewComponent,
+  ProfileViewEditComponent, TripAddComponent, SearchingForTripsViewComponent, TripViewEditComponent];

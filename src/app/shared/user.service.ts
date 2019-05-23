@@ -17,6 +17,7 @@ export class UserService {
             surname: user.surname,
             email: user.email,
             password: user.password,
+            phone: user.phone
         }
         const reqHeader = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.post(this.apiURL + '/users/signup', userBody, {headers: reqHeader});
