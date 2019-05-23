@@ -19,9 +19,8 @@ for user token
 Components folders got names that suggest what given component is responsible for
 
 ## Printscreens
-https://ibb.co/c3gVh0N
-https://ibb.co/T15PCVh
-https://ibb.co/zmxjZgK
-https://ibb.co/4YrB8dx
-https://ibb.co/wLBvR8k
-
+Logowanie https://ibb.co/T15PCVh
+Strona główna https://ibb.co/zmxjZgK
+Szukanie przejazdów https://ibb.co/4YrB8dx
+Przejazdy użytkownika https://ibb.co/wLBvR8k
+Dodawanie przejazdu https://ibb.co/c3gVh0N
