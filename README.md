@@ -19,5 +19,9 @@ for user token
 Components folders got names that suggest what given component is responsible for
 
 ## Printscreens
-
+https://ibb.co/c3gVh0N
+https://ibb.co/T15PCVh
+https://ibb.co/zmxjZgK
+https://ibb.co/4YrB8dx
+https://ibb.co/wLBvR8k
 
