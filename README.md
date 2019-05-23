@@ -15,6 +15,9 @@ folder for services - connections between front and backend. Sending asks to end
 ## auth folder
 for user token
 
-Components folders got names that suggest what given component is responsible for
+
+## Components folders got names that suggest what given component is responsible for
+
+## Printscreens
 
 
