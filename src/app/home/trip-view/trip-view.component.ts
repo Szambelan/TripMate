@@ -70,6 +70,14 @@ export class TripViewComponent implements OnInit {
     this.router.navigate(['/home/tripEdit']);
   }
 
+  resignation(idTrip: string) {
+    this.tripService.resignationFromTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
+          this.router.navigate(['/home/trip']);
+        });
+        // (err: HttpErrorResponse) => {
+        //   this.isDeletedTripError = true;
+        // });
+  }
 
 
 }

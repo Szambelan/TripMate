@@ -23,7 +23,7 @@ export class TripService {
             arrivalDate: trip.arrivalDate,
             description: trip.description
         };
-        console.log("tripBody" + tripBody);
+        console.log('tripBody' + tripBody);
         console.log(JSON.stringify(tripBody));
         let header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
         return this.http.post(this.apiURL + '/offers/add', tripBody, {headers: header});
@@ -76,6 +76,11 @@ export class TripService {
 
     searchTrips(searchFrom: string, searchTo: string) {
         //console.log(searchInput);
-        return this.http.get(this.apiURL + '/offers/searcher?searchFrom=' + searchFrom + '&searchTo=' + searchTo );
+        return this.http.get(this.apiURL + '/offers/searcher?searchFrom=' + searchFrom + '&searchTo=' + searchTo);
+    }
+
+    resignationFromTrip(token: string, idTrip: string) {
+        let header = new HttpHeaders().set('auth-token', token);
+        return this.http.get(this.apiURL + '/users/resign-trip/' + idTrip, {headers: header});
     }
 }

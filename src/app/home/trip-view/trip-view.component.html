@@ -51,7 +51,10 @@
                                                                      src="../../../assets/img/arrow.svg"
                                                                      alt="Arrow"> {{trip.cityTo}}</h4>
 
-
+                        <button (click)="resignation(trip._id);" title="Zrezygnuj z przejazdu"
+                                type="button" class="btn btn-outline-danger"
+                                style="position: absolute; right: 2%; bottom: 3%">Rezygnuj
+                        </button>
                     </div>
                     <div class="card-body">
                         <p>Data wyjazdu: {{trip.departureDate}}</p>
