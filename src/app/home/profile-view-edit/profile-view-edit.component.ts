@@ -13,6 +13,7 @@ export class ProfileViewEditComponent implements OnInit {
 
   user: any;
   error = false;
+  phonePattern = /^[0-9]{9}$/;
 
   constructor(private homeService: HomeService, private router: Router) {
   }

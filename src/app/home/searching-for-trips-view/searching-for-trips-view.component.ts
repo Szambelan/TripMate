@@ -3,6 +3,7 @@ import {TripService} from '../../shared/trip.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
+//declare var $: any;
 
 @Component({
     selector: 'app-all-trips-view',
@@ -26,15 +27,33 @@ export class SearchingForTripsViewComponent implements OnInit {
             }
         });
         //  ---------------------------------
+
+
     }
+
+
 
     alltrips: any = [];
     searchedTrips: any = [];
+    isFindingTripError = false;
+    noFreePlaces = false;
 
     ngOnInit() {
         this.loadAllTrips();
         this.resetForm();
     }
+
+    // showModal(): void {
+    //     $('#myModal').modal('show');
+    // }
+    // sendModal(): void {
+    //     // do something here
+    //     this.hideModal();
+    // }
+    // hideModal(): void {
+    //     document.getElementById('close-modal').click();
+    // }
+
 
     resetForm(form?: NgForm) {
         if (form != null) {
@@ -53,6 +72,9 @@ export class SearchingForTripsViewComponent implements OnInit {
         console.log(idTrip);
         this.tripService.reservateTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
             this.router.navigate(['/home/searchForTrips']);
+        },
+        (err: HttpErrorResponse) => {
+            this.noFreePlaces = true;
         });
     }
 
@@ -67,9 +89,12 @@ export class SearchingForTripsViewComponent implements OnInit {
         return this.tripService.searchTrips(newInputFrom, newInputTo).subscribe((data: {}) => {
             this.searchedTrips = data;
             console.log('searchedTrips');
-            console.log(this.searchedTrips);
-            });
-    }
+            console.log(JSON.stringify(this.searchedTrips));
+            if (JSON.stringify(this.searchedTrips).includes('Offers with given cities not found')) {
+                this.isFindingTripError = true;
+            }
+        });
 
+    }
 }
 

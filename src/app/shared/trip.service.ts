@@ -25,23 +25,27 @@ export class TripService {
         };
         console.log('tripBody' + tripBody);
         console.log(JSON.stringify(tripBody));
-        let header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
+        const header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
         return this.http.post(this.apiURL + '/offers/add', tripBody, {headers: header});
     }
 
+    getAllUsers() {
+        return this.http.get(this.apiURL + '/users');
+    }
+
     getTrip(token: string) {
-        let header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
+        const header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
         console.log(token);
         return this.http.get(this.apiURL + '/offers/published-offers', {headers: header});
     }
 
     getTripUserTakesPartIn(token: string) {
-        let header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
+        const header = new HttpHeaders({'Content-Type': 'application/json'}).set('auth-token', token);
         return this.http.get(this.apiURL + '/users/trips', {headers: header});
     }
 
     deleteTrip(token: string, idTrip: string) {
-        let header = new HttpHeaders().set('auth-token', token);
+        const header = new HttpHeaders().set('auth-token', token);
         return this.http.delete(this.apiURL + '/offers/' + idTrip, {headers: header});
     }
 
@@ -57,7 +61,6 @@ export class TripService {
         return this.http.get(this.apiURL + '/users/book-trip/' + idTrip, {headers: header});
     }
 
-//    editing the trip
     getTripData(idTrip: string) {
         return this.http.get(this.apiURL + '/offers/' + idTrip);
     }
@@ -75,12 +78,27 @@ export class TripService {
     }
 
     searchTrips(searchFrom: string, searchTo: string) {
-        //console.log(searchInput);
         return this.http.get(this.apiURL + '/offers/searcher?searchFrom=' + searchFrom + '&searchTo=' + searchTo);
     }
 
     resignationFromTrip(token: string, idTrip: string) {
-        let header = new HttpHeaders().set('auth-token', token);
+        const header = new HttpHeaders().set('auth-token', token);
         return this.http.get(this.apiURL + '/users/resign-trip/' + idTrip, {headers: header});
+    }
+
+    // pobranie wszystkich użytkowników do zaakceptowania
+    getUsersToAccept(token: string) {
+        const header = new HttpHeaders().set('auth-token', token);
+        return this.http.get(this.apiURL + '/users/all-users-to-accept', {headers: header});
+    }
+
+    userAccepted(token: string, idTrip: string, idUser: string) {
+        const header = new HttpHeaders().set('auth-token', token);
+        return this.http.get(this.apiURL + '/users/accept-user/' + idTrip + '/' + idUser, {headers: header});
+    }
+
+    userRejected(token: string, idTrip: string, idUser: string) {
+        const header = new HttpHeaders().set('auth-token', token);
+        return this.http.get(this.apiURL + '/users/reject-user/' + idTrip + '/' + idUser, {headers: header});
     }
 }

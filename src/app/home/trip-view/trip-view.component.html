@@ -7,12 +7,13 @@
 
         <div *ngIf="isDeletedTripError" class="row justify-content-center align-items-center">
             <div class="alert alert-warning">
-                Błąd przy usuwaniu posiłku.
+                Błąd przy usuwaniu przejazdu.
             </div>
         </div>
-
+        <ng-template [ngIf]="trips?.length > 0" [ngIfElse]="noTrips">
         <div class="row justify-content-center">
-            <div *ngFor="let trip of trips" class="col-md-7" data-aos="flip-left" data-aos-duration="1200"  style="margin-top:20px">
+            <div *ngFor="let trip of trips" class="col-md-7" data-aos="flip-left" data-aos-duration="1200"
+                 style="margin-top:20px">
                 <div class=" card text-dark bg-white">
                     <div class="card-header text-dark"
                          style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">
@@ -21,29 +22,69 @@
                                                                      alt="Arrow"> {{trip.cityTo}}</h4>
                         <button (click)="tripEditSite(trip._id);" title="Zarezerwuj przejazd"
                                 type="button" class="btn btn-outline-primary"
-                                style="position: absolute; right: 2%; top: 26%">Edytuj przejazd
+                                style="position: absolute; right: 2%; top: 65px">Edytuj przejazd
                         </button>
-                        <button (click)="deleteTrip(trip._id);" title="Zarezerwuj przejazd"
+                        <button (click)="deleteTrip(trip._id);" title="Usuń przejazd"
                                 type="button" class="btn btn-outline-danger"
-                                style="position: absolute; right: 2%; bottom: 3%">Usuń
+                                style="position: absolute; right: 2%; top: 110px">Usuń przejazd
                         </button>
                     </div>
+
                     <div class="card-body">
                         <p>Data wyjazdu: {{trip.departureDate}}</p>
                         <p>Data przyjazdu: {{trip.arrivalDate}}</p>
                         <p>Wolnych miejsc: {{trip.seatsLeft}}</p>
                         <p>Opis: {{trip.description}}</p>
+                        <br>
+                        <p>Użytkownicy, którzy z Tobą jadą: </p>
+                        <ng-template [ngIf]="getAcceptedUsers(trip._id)?.length > 0" [ngIfElse]="noAcceptedUsers">
+                            <div *ngFor="let acceptedUser of getAcceptedUsers(trip._id)" data-aos="flip-left"
+                                 data-aos-duration="1200">
+                                <p align="left" class="align-items-center">
+                                    {{acceptedUser.name}} {{ acceptedUser.surname}}, tel: {{acceptedUser.phone}}
+                                </p>
+                            </div>
+                        </ng-template>
+                        <ng-template #noAcceptedUsers>
+                            <p>Brak chętnych</p>
+                        </ng-template>
                     </div>
+
+                    <ng-template [ngIf]="getTripUsersToAccept(trip._id)?.length > 0">
+                    <div class="card-footer">
+                        <p>Użytkownicy do potwierdzenia: </p>
+                        <div *ngFor="let user of getTripUsersToAccept(trip._id)" data-aos="flip-left"
+                             data-aos-duration="1200">
+                            <p align="left" class="align-items-center">
+                                <button (click)="acceptUser(trip._id, user._id);" title="Zaakceptuj użytkownika"
+                                        type="button" class="btn btn-outline-success"
+                                        style="position: absolute; right: 18%;">Potwierdź
+                                </button>
+                                {{user.name}} {{ user.surname}}
+                                <button (click)="rejectUser(trip._id, user._id);" title="Odrzuć użytkownika"
+                                        type="button" class="btn btn-outline-danger"
+                                        style="position: absolute; right: 3%;">Odrzuć
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                    </ng-template>
+
                 </div>
             </div>
         </div>
-
+        </ng-template>
+        <ng-template #noTrips>
+            <p>Brak własnych przejazdów</p>
+        </ng-template>
 
         <div class="panel-heading text-center panel-relative" data-aos="fade-right" data-aos-duration="1200">
             <h3 class="panel-title" style="color: #0c0a10; margin-top: 40px">Przejazdy, w których bierzesz udział</h3>
         </div>
+        <ng-template [ngIf]="tripsYouTakePartIn?.length > 0" [ngIfElse]="noTripsYouTakePartIn">
         <div class="row justify-content-center">
-            <div *ngFor="let trip of tripsYouTakePartIn" class="col-md-7" data-aos="flip-left" data-aos-duration="1200" style="margin-top:20px">
+            <div *ngFor="let trip of tripsYouTakePartIn" class="col-md-7" data-aos="flip-left" data-aos-duration="1200"
+                 style="margin-top:20px">
                 <div class=" card text-dark bg-white">
                     <div class="card-header text-dark"
                          style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">
@@ -53,7 +94,7 @@
 
                         <button (click)="resignation(trip._id);" title="Zrezygnuj z przejazdu"
                                 type="button" class="btn btn-outline-danger"
-                                style="position: absolute; right: 2%; bottom: 3%">Rezygnuj
+                                style="position: absolute; right: 5%; top: 30%">Rezygnuj
                         </button>
                     </div>
                     <div class="card-body">
@@ -65,6 +106,10 @@
                 </div>
             </div>
         </div>
+        </ng-template>
+        <ng-template #noTripsYouTakePartIn>
+            <p>Brak przejazdów, w których bierzesz udział</p>
+        </ng-template>
 
     </div>
 </div>

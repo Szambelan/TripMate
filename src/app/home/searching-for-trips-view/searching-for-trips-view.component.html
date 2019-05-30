@@ -1,33 +1,147 @@
 <div class="container" style="margin-top: 180px; position: relative; ">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <div class="panel-heading text-center panel-relative">
+        <div class="panel-heading text-center panel-relative" data-aos="fade-down" data-aos-duration="1200">
             <h3 class="panel-title" style="color: #0c0a10">Znajdź przejazd</h3>
+
+            <div *ngIf="isFindingTripError" class="row justify-content-center align-items-center">
+                <div class="alert alert-warning">
+                    Przykro nam, ale nie znaleziono takiego przejazdu przejazdu.
+                </div>
+            </div>
+
 
             <form class="form align-items-center" style="margin-top: 40px" #searchTripForm="ngForm"
                   (ngSubmit)="OnSubmit(searchTripForm)">
                 <div class="row justify-content-center">
                     <div class="col-md-4 justify-content-center">
                         <input type="text" name="searchFrom" id="searchFrom" class="form-control" #searchFrom="ngModel"
-                               [(ngModel)]="searchInputFrom" placeholder="Miejsce wyjazdu..." style="border-radius: 0.8rem">
+                               [(ngModel)]="searchInputFrom" placeholder="Miejsce wyjazdu..."
+                               style="border-radius: 0.8rem">
                         <input type="text" name="searchTo" id="searchTo" class="form-control" #searchTo="ngModel"
-                               [(ngModel)]="searchInputTo" placeholder="Miejsce przyjazdu..." style="border-radius: 0.8rem; margin-top: 10px">
-                        <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px">Szukaj</button>
+                               [(ngModel)]="searchInputTo" placeholder="Miejsce przyjazdu..."
+                               style="border-radius: 0.8rem; margin-top: 10px">
+                        <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px; margin-bottom: 20px;">Szukaj</button>
                     </div>
                 </div>
             </form>
         </div>
 
+        <div *ngIf="noFreePlaces" class="row justify-content-center align-items-center">
+            <div class="alert alert-warning">
+                Brak dostępnych miejsc w tym przejeździe.
+            </div>
+        </div>
+
         <div class="row justify-content-center">
-            <div *ngFor="let trip of searchedTrips" class="col-md-7" data-aos="zoom-in" data-aos-duration="1400" style="margin-top:30px">
+            <div *ngFor="let trip of searchedTrips" class="col-md-7" data-aos="zoom-in" data-aos-duration="1400"
+                 style="margin-top:30px">
                 <div class=" card text-dark bg-white">
-                    <div class="card-header text-dark" style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">
-                        <h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left" src="../../../assets/img/arrow.svg" alt="Arrow"> {{trip.cityTo}}</h4>
+                    <div class="card-header text-dark"
+                         style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">
+                        <h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left"
+                                                                     src="../../../assets/img/arrow.svg"
+                                                                     alt="Arrow"> {{trip.cityTo}}</h4>
 
                         <button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"
                                 type="button" class="btn btn-outline-primary"
                                 style="position: absolute; right: 5%; top: 30%">Zarezerwuj
                         </button>
+
+                        <!--<button data-toggle="modal" data-target="#reservationModal" title="Zarezerwuj przejazd"-->
+                                <!--type="button" class="btn btn-outline-primary"-->
+                                <!--style="position: absolute; right: 5%; top: 30%">Zarezerwuj-->
+                        <!--</button>-->
+
+                        <!--&lt;!&ndash; Modal &ndash;&gt;-->
+                        <!--<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalTitle" aria-hidden="true">-->
+                            <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+                                <!--<div class="modal-content">-->
+                                    <!--<div class="modal-header">-->
+                                        <!--<h5 class="modal-title" id="exampleModalLongTitle">Potwierdzenie rezerwacji</h5>-->
+                                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                            <!--<span aria-hidden="true">&times;</span>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-body">-->
+                                        <!--Czy na pewno chcesz wysłać zapytanie, w celu zarezerwowania miejsca w tym przejeździe?-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-outline-succes" data-dismiss="modal">Wróc</button>-->
+                                        <!--<button (click)="makeReservation(trip._id);" type="button" class="btn btn-outline-success">Potwierdź</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+
+                <!--TO JAKOS DZIALAŁOOOOO!!!!!!!!!!!!!!!!1-->
+                        <!--&lt;!&ndash; Button to Open the Modal &ndash;&gt;-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="showModal()">-->
+                            <!--Open modal-->
+                        <!--</button>-->
+
+                        <!--&lt;!&ndash; The Modal &ndash;&gt;-->
+                        <!--<div class="modal fade" id="myModal">-->
+                            <!--<div class="modal-dialog">-->
+                                <!--<div class="modal-content">-->
+
+                                    <!--&lt;!&ndash; Modal Header &ndash;&gt;-->
+                                    <!--<div class="modal-header">-->
+                                        <!--<h4 class="modal-title">Modal Heading</h4>-->
+                                        <!--<button type="button" class="close" (click)="hideModal()">&times;</button>-->
+                                    <!--</div>-->
+
+                                    <!--&lt;!&ndash; Modal body &ndash;&gt;-->
+                                    <!--<div class="modal-body">-->
+                                        <!--Modal body..-->
+                                    <!--</div>-->
+
+                                    <!--&lt;!&ndash; Modal footer &ndash;&gt;-->
+                                    <!--<div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-primary" (click)="sendModal()" >Send</button>-->
+                                        <!--<button type="button" class="btn btn-danger" (click)="hideModal()">Close</button>-->
+
+                                        <!--&lt;!&ndash; this button is hidden, used to close from typescript &ndash;&gt;-->
+                                        <!--<button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+
+                        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+                            <!--Launch demo modal-->
+                        <!--</button>-->
+
+                        <!--&lt;!&ndash; Modal &ndash;&gt;-->
+                        <!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+                            <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+                                <!--<div class="modal-content">-->
+                                    <!--<div class="modal-header">-->
+                                        <!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
+                                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                            <!--<span aria-hidden="true">&times;</span>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-body">-->
+                                        <!--...-->
+                                    <!--</div>-->
+                                    <!--<div class="modal-footer">-->
+                                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+
+
+
                     </div>
                     <div class="card-body">
                         <p>Data wyjazdu: {{trip.departureDate}}</p>
@@ -40,26 +154,26 @@
         </div>
 
 
-<!--------------------------WSZYSTKIE PRZEJAZDY------------------------------------>
+        <!--------------------------WSZYSTKIE PRZEJAZDY------------------------------------>
         <!--<div class="row justify-content-center">-->
-            <!--<div *ngFor="let trip of alltrips" class="col-md-7" style="margin-top:30px">-->
-                <!--<div class=" card text-dark bg-white">-->
-                    <!--<div class="card-header text-dark" style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">-->
-                        <!--<h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left" src="../../../assets/img/arrow.svg" alt="Arrow"> {{trip.cityTo}}</h4>-->
+        <!--<div *ngFor="let trip of alltrips" class="col-md-7" style="margin-top:30px">-->
+        <!--<div class=" card text-dark bg-white">-->
+        <!--<div class="card-header text-dark" style=" text-align: center; padding-bottom: 0rem; padding-top: 0.50rem">-->
+        <!--<h4 class="text-dark">{{trip.cityFrom}} <img class="pull-left" src="../../../assets/img/arrow.svg" alt="Arrow"> {{trip.cityTo}}</h4>-->
 
-                        <!--<button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"-->
-                                <!--type="button" class="btn btn-outline-primary"-->
-                                <!--style="position: absolute; right: 5%; top: 30%">Zarezerwuj-->
-                        <!--</button>-->
-                    <!--</div>-->
-                    <!--<div class="card-body">-->
-                        <!--<p>Data wyjazdu: {{trip.departureDate}}</p>-->
-                        <!--<p>Data przyjazdu: {{trip.arrivalDate}}</p>-->
-                        <!--<p>Wolnych miejsc: {{trip.seatsLeft}}</p>-->
-                        <!--<p>Opis: {{trip.description}}</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+        <!--<button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"-->
+        <!--type="button" class="btn btn-outline-primary"-->
+        <!--style="position: absolute; right: 5%; top: 30%">Zarezerwuj-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--<div class="card-body">-->
+        <!--<p>Data wyjazdu: {{trip.departureDate}}</p>-->
+        <!--<p>Data przyjazdu: {{trip.arrivalDate}}</p>-->
+        <!--<p>Wolnych miejsc: {{trip.seatsLeft}}</p>-->
+        <!--<p>Opis: {{trip.description}}</p>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
         <!--</div>-->
 
     </div>

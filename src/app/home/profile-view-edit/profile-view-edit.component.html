@@ -7,7 +7,8 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <input type="email" name="email" id="email" class="text-center form-control validate" #email="ngModel"
+                            <input type="email" name="email" id="email" class="text-center form-control validate"
+                                   #email="ngModel"
                                    [(ngModel)]="user.email" required>
                         </h3>
                     </div>
@@ -29,9 +30,14 @@
                                     <tr>
                                         <td>Telefon:</td>
                                         <td><input type="text" name="phone" id="phone" class="form-control validate"
-                                                   #phone="ngModel" [(ngModel)]="user.phone" required></td>
+                                                   #phone="ngModel" [(ngModel)]="user.phone" required
+                                                   [pattern]="phonePattern">
+                                            <label *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                                                   class="alert alert-warning mt-3 p-2" data-error="">Niepoprawny numer
+                                                telefonu.</label></td>
                                     </tr>
                                     </tbody>
+
                                 </table>
 
                                 <button [disabled]="!editingForm.valid" type="submit" class="btn btn-outline-primary">

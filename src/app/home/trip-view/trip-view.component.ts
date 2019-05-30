@@ -1,83 +1,169 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TripService} from '../../shared/trip.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
-  selector: 'app-trip-view',
-  templateUrl: './trip-view.component.html',
-  styleUrls: ['./trip-view.component.css']
+    selector: 'app-trip-view',
+    templateUrl: './trip-view.component.html',
+    styleUrls: ['./trip-view.component.css']
 })
 export class TripViewComponent implements OnInit {
 
-  constructor(private tripService: TripService, private router: Router) {
+    constructor(private tripService: TripService, private router: Router) {
 
-    // TO REFRESH THE PAGE AFTER REMOVING TRIP--------------------
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
-      return false;
-    };
+        // TO REFRESH THE PAGE AFTER REMOVING TRIP--------------------
+        this.router.routeReuseStrategy.shouldReuseRoute = function() {
+            return false;
+        };
 
-    this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd) {
-        // trick the Router into believing it's last link wasn't previously loaded
-        this.router.navigated = false;
-        // if you need to scroll back to top, here is the right place
-        window.scrollTo(0, 0);
-      }
-    });
-  //  ---------------------------------
-
-
-  }
-
-  trips: any = [];
-  tripsYouTakePartIn: any = [];
-  isDeletedTripError = false;
-
-
-  ngOnInit() {
-    this.loadTrips();
-    this.loadTripsUserTakesPartIn();
-  }
-
-  loadTrips() {
-    return this.tripService.getTrip(localStorage.getItem('userToken')).subscribe((data: {}) => {
-      this.trips = data;
-
-      console.log(JSON.stringify(this.trips));
-      console.log(JSON.stringify(data));
-    });
-  }
-
-  loadTripsUserTakesPartIn() {
-    return this.tripService.getTripUserTakesPartIn(localStorage.getItem('userToken')).subscribe((data: {}) => {
-      this.tripsYouTakePartIn = data;
-    });
-  }
-
-  deleteTrip(idTrip: string) {
-    console.log(JSON.stringify(idTrip));
-    this.tripService.deleteTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
-          this.router.navigate(['/home/trip']);
-        },
-        (err: HttpErrorResponse) => {
-          this.isDeletedTripError = true;
+        this.router.events.subscribe((evt) => {
+            if (evt instanceof NavigationEnd) {
+                // trick the Router into believing it's last link wasn't previously loaded
+                this.router.navigated = false;
+                // if you need to scroll back to top, here is the right place
+                window.scrollTo(0, 0);
+            }
         });
-  }
+        //  ---------------------------------
 
-  tripEditSite(idTrip: string) {
-    localStorage.setItem('idTrip', idTrip);
-    this.router.navigate(['/home/tripEdit']);
-  }
 
-  resignation(idTrip: string) {
-    this.tripService.resignationFromTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
-          this.router.navigate(['/home/trip']);
+    }
+
+    trips: any = [];
+    tripsYouTakePartIn: any = [];
+    isDeletedTripError = false;
+    usersToAccept: any = [];
+    allUsers: any = [];
+
+    ngOnInit() {
+        this.loadTrips();
+        this.loadUsersToAccept();
+        this.loadAllUsers();
+        this.loadTripsUserTakesPartIn();
+    }
+
+    loadAllUsers() {
+        return this.tripService.getAllUsers().subscribe((data: {}) => {
+            this.allUsers = data;
+        });
+    }
+
+    loadTrips() {
+        return this.tripService.getTrip(localStorage.getItem('userToken')).subscribe((data: {}) => {
+            this.trips = data;
+            // console.log(JSON.stringify(this.trips));
+        });
+    }
+
+    loadUsersToAccept() {
+        return this.tripService.getUsersToAccept(localStorage.getItem('userToken')).subscribe((data: {}) => {
+            this.usersToAccept = data;
+        });
+    }
+
+    loadTripsUserTakesPartIn() {
+        return this.tripService.getTripUserTakesPartIn(localStorage.getItem('userToken')).subscribe((data: {}) => {
+            this.tripsYouTakePartIn = data;
+        });
+    }
+
+
+    // getTripUsersToAccept(tripId: string) {
+    //     const users = this.usersToAccept.filter(function(user) {
+    //         //console.log('user = ' + JSON.stringify(user.toAccept));
+    //
+    //         const toAcceptGood = user.toAccept.filter(function(id) {
+    //             //console.log('trip._id ' + id._id + '===' + 'tripID przejazdu na którym jest pętla ' + tripId);
+    //             return id._id === tripId;
+    //         });
+    //         console.log('toAcceptGood = ' + JSON.stringify(toAcceptGood));
+    //         console.log('user.toAccept = ' + JSON.stringify(user.toAccept));
+    //         console.log('user.toAccept2 = ' + user.toAccept);
+    //
+    //         var yes = (JSON.stringify(toAcceptGood) !== '[]');
+    //         console.log('user.toAccept3 = ' + yes);
+    //
+    //         console.log((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood)));
+    //         console.log(((user.toAccept).some(a => (toAcceptGood).every((v, i) => v === a[i]))));
+    //         //console.log((user.toAccept).filter(toAcceptGood));
+    //         console.log('cos ' + ((user.toAccept).some(a => (toAcceptGood).every((v, i) => v === a[i])) && (JSON.stringify(toAcceptGood) !== '[]' )));
+    //         if (((((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood))) == -1) ||
+    //             ((JSON.stringify(user.toAccept)) == (JSON.stringify(toAcceptGood))))
+    //             && (JSON.stringify(toAcceptGood) !== '[]' )) {
+    //        // if (((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood))) === -1 && toAcceptGood !== []) {
+    //         //return ((user.toAccept).filter(toAcceptGood));
+    //             return user;
+    //         } else { return; }
+    //
+    //     });
+    //     console.log('odpwiedx' + JSON.stringify(users));
+    //     return users;
+    // }
+
+    getTripUsersToAccept(tripId: string) {
+        return this.usersToAccept.filter(function(user) {
+            const toAcceptGood = user.toAccept.filter(function(id) {
+                return id._id === tripId;
+            });
+            if (((((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood))) == -1) ||
+                ((JSON.stringify(user.toAccept)) == (JSON.stringify(toAcceptGood))))
+                && (JSON.stringify(toAcceptGood) !== '[]')) {
+                return user;
+            } else {
+                return;
+            }
+        });
+    }
+
+    getAcceptedUsers(tripId: string) {
+        return this.allUsers.filter(function(user) {
+            return user.trips.includes(tripId);
+        });
+    }
+
+    acceptUser(tripId: string, userId: string) {
+        return this.tripService.userAccepted(localStorage.getItem('userToken'), tripId, userId).subscribe((data: any) => {
+                this.router.navigate(['/home/trip']);
+            },
+            (err: HttpErrorResponse) => {
+                this.isDeletedTripError = true;
+            });
+    }
+
+    rejectUser(tripId: string, userId: string) {
+        console.log('idUser: ' + userId + '\n tripid: ' + tripId);
+        return this.tripService.userRejected(localStorage.getItem('userToken'), tripId, userId).subscribe((data: any) => {
+                this.router.navigate(['/home/trip']);
+            },
+            (err: HttpErrorResponse) => {
+                this.isDeletedTripError = true;
+            });
+    }
+
+    deleteTrip(idTrip: string) {
+        console.log(JSON.stringify(idTrip));
+        this.tripService.deleteTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
+                this.router.navigate(['/home/trip']);
+            },
+            (err: HttpErrorResponse) => {
+                this.isDeletedTripError = true;
+            });
+    }
+
+    tripEditSite(idTrip: string) {
+        localStorage.setItem('idTrip', idTrip);
+        this.router.navigate(['/home/tripEdit']);
+    }
+
+    resignation(idTrip: string) {
+        this.tripService.resignationFromTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
+            this.router.navigate(['/home/trip']);
         });
         // (err: HttpErrorResponse) => {
         //   this.isDeletedTripError = true;
         // });
-  }
+    }
 
 
 }
