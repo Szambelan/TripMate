@@ -40,16 +40,6 @@ export class RegisterViewComponent implements OnInit {
     }
 
     OnSubmit(form: NgForm) {
-
-        // const newUser = {
-        //     name: form.value.name,
-        //     surname: form.value.surname,
-        //     email: form.value.email,
-        //     password: form.value.password,
-        //     phone: form.value.phone
-        // };
-        //
-        // console.log(newUser);
         this.userService.registerUser(form.value).subscribe((data: any) => {
                 this.router.navigate(['/login']);
             },

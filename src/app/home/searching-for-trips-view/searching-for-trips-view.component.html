@@ -21,7 +21,9 @@
                         <input type="text" name="searchTo" id="searchTo" class="form-control" #searchTo="ngModel"
                                [(ngModel)]="searchInputTo" placeholder="Miejsce przyjazdu..."
                                style="border-radius: 0.8rem; margin-top: 10px">
-                        <button type="submit" class="btn btn-outline-primary" style="margin-top: 10px; margin-bottom: 20px;">Szukaj</button>
+                        <button type="submit" class="btn btn-outline-primary"
+                                style="margin-top: 10px; margin-bottom: 20px;">Szukaj
+                        </button>
                     </div>
                 </div>
             </form>
@@ -47,101 +49,6 @@
                                 type="button" class="btn btn-outline-primary"
                                 style="position: absolute; right: 5%; top: 80px">Zarezerwuj
                         </button>
-
-                        <!--<button data-toggle="modal" data-target="#reservationModal" title="Zarezerwuj przejazd"-->
-                                <!--type="button" class="btn btn-outline-primary"-->
-                                <!--style="position: absolute; right: 5%; top: 30%">Zarezerwuj-->
-                        <!--</button>-->
-
-                        <!--&lt;!&ndash; Modal &ndash;&gt;-->
-                        <!--<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalTitle" aria-hidden="true">-->
-                            <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
-                                <!--<div class="modal-content">-->
-                                    <!--<div class="modal-header">-->
-                                        <!--<h5 class="modal-title" id="exampleModalLongTitle">Potwierdzenie rezerwacji</h5>-->
-                                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                            <!--<span aria-hidden="true">&times;</span>-->
-                                        <!--</button>-->
-                                    <!--</div>-->
-                                    <!--<div class="modal-body">-->
-                                        <!--Czy na pewno chcesz wysłać zapytanie, w celu zarezerwowania miejsca w tym przejeździe?-->
-                                    <!--</div>-->
-                                    <!--<div class="modal-footer">-->
-                                        <!--<button type="button" class="btn btn-outline-succes" data-dismiss="modal">Wróc</button>-->
-                                        <!--<button (click)="makeReservation(trip._id);" type="button" class="btn btn-outline-success">Potwierdź</button>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-
-
-                <!--TO JAKOS DZIALAŁOOOOO!!!!!!!!!!!!!!!!1-->
-                        <!--&lt;!&ndash; Button to Open the Modal &ndash;&gt;-->
-                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="showModal()">-->
-                            <!--Open modal-->
-                        <!--</button>-->
-
-                        <!--&lt;!&ndash; The Modal &ndash;&gt;-->
-                        <!--<div class="modal fade" id="myModal">-->
-                            <!--<div class="modal-dialog">-->
-                                <!--<div class="modal-content">-->
-
-                                    <!--&lt;!&ndash; Modal Header &ndash;&gt;-->
-                                    <!--<div class="modal-header">-->
-                                        <!--<h4 class="modal-title">Modal Heading</h4>-->
-                                        <!--<button type="button" class="close" (click)="hideModal()">&times;</button>-->
-                                    <!--</div>-->
-
-                                    <!--&lt;!&ndash; Modal body &ndash;&gt;-->
-                                    <!--<div class="modal-body">-->
-                                        <!--Modal body..-->
-                                    <!--</div>-->
-
-                                    <!--&lt;!&ndash; Modal footer &ndash;&gt;-->
-                                    <!--<div class="modal-footer">-->
-                                        <!--<button type="button" class="btn btn-primary" (click)="sendModal()" >Send</button>-->
-                                        <!--<button type="button" class="btn btn-danger" (click)="hideModal()">Close</button>-->
-
-                                        <!--&lt;!&ndash; this button is hidden, used to close from typescript &ndash;&gt;-->
-                                        <!--<button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-
-
-                        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
-                        <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-                            <!--Launch demo modal-->
-                        <!--</button>-->
-
-                        <!--&lt;!&ndash; Modal &ndash;&gt;-->
-                        <!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-                            <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
-                                <!--<div class="modal-content">-->
-                                    <!--<div class="modal-header">-->
-                                        <!--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>-->
-                                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                            <!--<span aria-hidden="true">&times;</span>-->
-                                        <!--</button>-->
-                                    <!--</div>-->
-                                    <!--<div class="modal-body">-->
-                                        <!--...-->
-                                    <!--</div>-->
-                                    <!--<div class="modal-footer">-->
-                                        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-
-
-
-
-
                     </div>
                     <div class="card-body">
                         <p>Data wyjazdu: {{trip.departureDate}}</p>

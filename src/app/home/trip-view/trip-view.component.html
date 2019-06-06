@@ -35,10 +35,6 @@
                         <p>Data przyjazdu: {{trip.arrivalDate}}</p>
                         <p>Wolnych miejsc: {{trip.seatsLeft}}</p>
                         <p>Opis: {{trip.description}}</p>
-                        <!--<button (click)="getMap(trip.cityFrom, trip.cityTo);"  title="Pokaż mapę przejazdu"-->
-                                <!--type="button" class="btn btn-outline-primary"-->
-                                <!--style="position: absolute;">Pokaż trasę-->
-                        <!--</button>-->
                         <agm-map style="height: 300px">
                             <agm-direction [origin]="trip.cityFrom"
                             [destination]="trip.cityTo">

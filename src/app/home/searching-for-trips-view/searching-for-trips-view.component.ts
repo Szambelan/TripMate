@@ -3,12 +3,10 @@ import {TripService} from '../../shared/trip.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NgForm} from '@angular/forms';
-//declare var $: any;
 
 @Component({
     selector: 'app-all-trips-view',
-    templateUrl: './searching-for-trips-view.component.html',
-    styleUrls: ['./searching-for-trips-view.component.css']
+    templateUrl: './searching-for-trips-view.component.html'
 })
 export class SearchingForTripsViewComponent implements OnInit {
 
@@ -30,7 +28,6 @@ export class SearchingForTripsViewComponent implements OnInit {
 
 
     }
-
 
 
     alltrips: any = [];
@@ -71,11 +68,11 @@ export class SearchingForTripsViewComponent implements OnInit {
     makeReservation(idTrip: string) {
         console.log(idTrip);
         this.tripService.reservateTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
-            this.router.navigate(['/home/searchForTrips']);
-        },
-        (err: HttpErrorResponse) => {
-            this.noFreePlaces = true;
-        });
+                this.router.navigate(['/home/searchForTrips']);
+            },
+            (err: HttpErrorResponse) => {
+                this.noFreePlaces = true;
+            });
     }
 
     OnSubmit(form: NgForm) {
@@ -86,14 +83,28 @@ export class SearchingForTripsViewComponent implements OnInit {
         const inputTo = JSON.stringify(form.value.searchTo);
         const newInputTo = (inputTo.substr(1, inputTo.length - 2));
 
-        return this.tripService.searchTrips(newInputFrom, newInputTo).subscribe((data: {}) => {
-            this.searchedTrips = data;
-            console.log('searchedTrips');
-            console.log(JSON.stringify(this.searchedTrips));
-            if (JSON.stringify(this.searchedTrips).includes('Offers with given cities not found')) {
-                this.isFindingTripError = true;
-            }
-        });
+        if (newInputFrom.length >= 2 && newInputTo.length >= 2) {
+            return this.tripService.searchTrips(newInputFrom, newInputTo).subscribe((data: {}) => {
+                this.searchedTrips = data;
+                console.log('searchedTrips');
+                console.log(JSON.stringify(this.searchedTrips));
+                if (JSON.stringify(this.searchedTrips).includes('Offers with given cities not found')) {
+                    this.isFindingTripError = true;
+                }
+            });
+        } else if (newInputFrom.length >= 2 && newInputTo.length <= 2) {
+            return this.tripService.searchTripsFrom(newInputFrom).subscribe((data: {}) => {
+                this.searchedTrips = data;
+                console.log('searchedTrips');
+                console.log(JSON.stringify(this.searchedTrips));
+            });
+        } else if (newInputFrom.length <= 2 && newInputTo.length >= 2) {
+            return this.tripService.searchTripsTo(newInputTo).subscribe((data: {}) => {
+                this.searchedTrips = data;
+                console.log('searchedTrips');
+                console.log(JSON.stringify(this.searchedTrips));
+            });
+        }
 
     }
 }

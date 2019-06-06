@@ -5,8 +5,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-trip-view',
-    templateUrl: './trip-view.component.html',
-    styleUrls: ['./trip-view.component.css']
+    templateUrl: './trip-view.component.html'
 })
 export class TripViewComponent implements OnInit {
 
@@ -68,39 +67,6 @@ export class TripViewComponent implements OnInit {
         });
     }
 
-
-    // getTripUsersToAccept(tripId: string) {
-    //     const users = this.usersToAccept.filter(function(user) {
-    //         //console.log('user = ' + JSON.stringify(user.toAccept));
-    //
-    //         const toAcceptGood = user.toAccept.filter(function(id) {
-    //             //console.log('trip._id ' + id._id + '===' + 'tripID przejazdu na którym jest pętla ' + tripId);
-    //             return id._id === tripId;
-    //         });
-    //         console.log('toAcceptGood = ' + JSON.stringify(toAcceptGood));
-    //         console.log('user.toAccept = ' + JSON.stringify(user.toAccept));
-    //         console.log('user.toAccept2 = ' + user.toAccept);
-    //
-    //         var yes = (JSON.stringify(toAcceptGood) !== '[]');
-    //         console.log('user.toAccept3 = ' + yes);
-    //
-    //         console.log((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood)));
-    //         console.log(((user.toAccept).some(a => (toAcceptGood).every((v, i) => v === a[i]))));
-    //         //console.log((user.toAccept).filter(toAcceptGood));
-    //         console.log('cos ' + ((user.toAccept).some(a => (toAcceptGood).every((v, i) => v === a[i])) && (JSON.stringify(toAcceptGood) !== '[]' )));
-    //         if (((((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood))) == -1) ||
-    //             ((JSON.stringify(user.toAccept)) == (JSON.stringify(toAcceptGood))))
-    //             && (JSON.stringify(toAcceptGood) !== '[]' )) {
-    //        // if (((JSON.stringify(user.toAccept)).indexOf(JSON.stringify(toAcceptGood))) === -1 && toAcceptGood !== []) {
-    //         //return ((user.toAccept).filter(toAcceptGood));
-    //             return user;
-    //         } else { return; }
-    //
-    //     });
-    //     console.log('odpwiedx' + JSON.stringify(users));
-    //     return users;
-    // }
-
     getTripUsersToAccept(tripId: string) {
         return this.usersToAccept.filter(function(user) {
             const toAcceptGood = user.toAccept.filter(function(id) {
@@ -160,9 +126,6 @@ export class TripViewComponent implements OnInit {
         this.tripService.resignationFromTrip(localStorage.getItem('userToken'), idTrip).subscribe((data: any) => {
             this.router.navigate(['/home/trip']);
         });
-        // (err: HttpErrorResponse) => {
-        //   this.isDeletedTripError = true;
-        // });
     }
 
 

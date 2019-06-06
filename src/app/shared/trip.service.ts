@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {newTrip} from '../models/newTrip.model';
-import {Trip} from '../models/trip.model';
-import {homeData} from '../models/homeData.model';
 
 @Injectable({
     providedIn: 'root'
@@ -79,6 +76,14 @@ export class TripService {
 
     searchTrips(searchFrom: string, searchTo: string) {
         return this.http.get(this.apiURL + '/offers/searcher?searchFrom=' + searchFrom + '&searchTo=' + searchTo);
+    }
+
+    searchTripsFrom(searchFrom: string) {
+        return this.http.get(this.apiURL + '/offers/searcher-city-from?search=' + searchFrom);
+    }
+
+    searchTripsTo(searchTo: string) {
+        return this.http.get(this.apiURL + '/offers/searcher-city-to?search=' + searchTo);
     }
 
     resignationFromTrip(token: string, idTrip: string) {

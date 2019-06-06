@@ -8,8 +8,7 @@ import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-trip-add',
-    templateUrl: './trip-add.component.html',
-    styleUrls: ['./trip-add.component.css']
+    templateUrl: './trip-add.component.html'
 })
 export class TripAddComponent implements OnInit {
 

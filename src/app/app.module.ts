@@ -13,7 +13,7 @@ import {HomeService} from './shared/home.service';
 import {AuthGuard} from './auth/auth.guard';
 import {TripService} from './shared/trip.service';
 
-// import { UserComponent } from './user/user.component';
+
 import {ProfileViewComponent} from './home/profile-view/profile-view.component';
 import {TripViewComponent} from './home/trip-view/trip-view.component';
 import {ProfileViewEditComponent} from './home/profile-view-edit/profile-view-edit.component';
@@ -41,7 +41,7 @@ import {TripViewEditComponent} from './home/trip-view-edit/trip-view-edit.compon
         AppRoutingModule,
         ReactiveFormsModule,
         NgbModule,
-        AgmCoreModule.forRoot( {apiKey: 'AIzaSyAsla6k-UWz-yrLClN_eIpcfJzYwHDKmIA'} ),
+        AgmCoreModule.forRoot( {apiKey: 'googleMapsApiKEY'} ),
         AgmDirectionModule,
     ],
     providers: [
