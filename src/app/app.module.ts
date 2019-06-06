@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule} from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
 
 import {AppRoutingModule, routingComponents} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -38,7 +40,9 @@ import {TripViewEditComponent} from './home/trip-view-edit/trip-view-edit.compon
         FormsModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        AgmCoreModule.forRoot( {apiKey: 'AIzaSyAsla6k-UWz-yrLClN_eIpcfJzYwHDKmIA'} ),
+        AgmDirectionModule,
     ],
     providers: [
         UserService,

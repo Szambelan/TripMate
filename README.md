@@ -19,8 +19,23 @@ for user token
 Components folders got names that suggest what given component is responsible for
 
 ## Printscreens
-Logowanie ![image](https://ibb.co/T15PCVh) dodać zdjecie na githubie
-Strona główna https://ibb.co/zmxjZgK
-Szukanie przejazdów https://ibb.co/4YrB8dx
-Przejazdy użytkownika https://ibb.co/wLBvR8k
-Dodawanie przejazdu https://ibb.co/c3gVh0N
+Log in
+
+![logIn](https://user-images.githubusercontent.com/31566345/58667481-6fe10000-8336-11e9-932d-b3b3c84a2dc0.PNG)
+
+Main page
+![mainPage](https://user-images.githubusercontent.com/31566345/58667374-1b3d8500-8336-11e9-9185-b60e93b0524e.PNG)
+
+Making reservation
+
+![logIn](https://user-images.githubusercontent.com/31566345/58667481-6fe10000-8336-11e9-932d-b3b3c84a2dc0.PNG)
+
+Users trips
+![widokPrzejazdow2](https://user-images.githubusercontent.com/31566345/58667594-b9c9e600-8336-11e9-8613-8b9c03a700c3.png)
+
+Users trips 2
+![widokPrzejazdow](https://user-images.githubusercontent.com/31566345/58667640-e1b94980-8336-11e9-8271-c26372822c95.png)
+
+Adding a trip
+![addingTrip](https://user-images.githubusercontent.com/31566345/58667667-f564b000-8336-11e9-91db-b723475b43f7.PNG)
+

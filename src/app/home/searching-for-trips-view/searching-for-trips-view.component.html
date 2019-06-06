@@ -45,7 +45,7 @@
 
                         <button (click)="makeReservation(trip._id);" title="Zarezerwuj przejazd"
                                 type="button" class="btn btn-outline-primary"
-                                style="position: absolute; right: 5%; top: 30%">Zarezerwuj
+                                style="position: absolute; right: 5%; top: 80px">Zarezerwuj
                         </button>
 
                         <!--<button data-toggle="modal" data-target="#reservationModal" title="Zarezerwuj przejazd"-->
@@ -148,6 +148,11 @@
                         <p>Data przyjazdu: {{trip.arrivalDate}}</p>
                         <p>Wolnych miejsc: {{trip.seatsLeft}}</p>
                         <p>Opis: {{trip.description}}</p>
+                        <agm-map style="height: 300px">
+                            <agm-direction [origin]="trip.cityFrom"
+                                           [destination]="trip.cityTo">
+                            </agm-direction>
+                        </agm-map>
                     </div>
                 </div>
             </div>
