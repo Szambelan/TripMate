@@ -45,33 +45,33 @@ Components folders and files got names that suggest what given component is resp
 
 
 
-Main page
+- Main page
 ![mainPage](https://user-images.githubusercontent.com/31566345/58667374-1b3d8500-8336-11e9-9185-b60e93b0524e.PNG)
 
-Log in
+- Log in
 ![logIn](https://user-images.githubusercontent.com/31566345/58667481-6fe10000-8336-11e9-932d-b3b3c84a2dc0.PNG)
 
-Registration with validation form
+- Registration with validation form
 ![image](https://user-images.githubusercontent.com/31566345/59103555-7c191e80-892f-11e9-9666-d1825bf9f418.png)
 
-Looking for trips
+- Looking for trips
 ![image](https://user-images.githubusercontent.com/31566345/59105987-876f4880-8935-11e9-9eeb-f0b9a0677f25.png)
 
-Looking for trips without full names of cities
+- Looking for trips without full names of cities
 ![image](https://user-images.githubusercontent.com/31566345/59106211-19775100-8936-11e9-9d37-928441505b01.png)
 
-Making reservation
+- Making reservation
 ![image](https://user-images.githubusercontent.com/31566345/59106683-49732400-8937-11e9-9565-5c085f7987c4.png)
 
-Resignation from trip
+- Resignation from trip
 ![image](https://user-images.githubusercontent.com/31566345/59106563-04e78880-8937-11e9-9502-1e5b64cd55a6.png)
 
-Users trips with options of accepting / rejecting users, editing / deleting the trip and the informations about users that are taking part in your trip
+- Users trips with options of accepting / rejecting users, editing / deleting the trip and the informations about users that are taking part in your trip
 ![image](https://user-images.githubusercontent.com/31566345/59106837-a1118f80-8937-11e9-9350-b8a19cda29d8.png)
 
-List of trips that user is taking part in
+- List of trips that user is taking part in
 ![image](https://user-images.githubusercontent.com/31566345/59106935-dfa74a00-8937-11e9-982d-6f771fbc59ee.png)
 
-Adding a trip with validation form and picking date from calendar
+- Adding a trip with validation form and picking date from calendar
 ![addingTrip](https://user-images.githubusercontent.com/31566345/58667667-f564b000-8336-11e9-91db-b723475b43f7.PNG)
 
