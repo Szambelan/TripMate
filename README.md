@@ -1,4 +1,4 @@
-# TripMate
+# TripMate Frontend
 
 ## Commends to start:
 ```
