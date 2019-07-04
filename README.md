@@ -1,5 +1,7 @@
 # TripMate Frontend
 
+TripMate is my and my friend web app for passing web classes. Link to Backend: https://github.com/mtluscik99/ServerZTW
+
 ## Commends to start:
 ```
 ng serve
